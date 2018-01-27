@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     Spinner sp;
     ArrayList<String> mylist = new ArrayList<>();
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         mylist.add("香蕉");
         mylist.add("鳳梨");
         mylist.add("番茄");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, mylist);
         sp.setAdapter(adapter);
 
@@ -31,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
         EditText ed = findViewById(R.id.editText);
 
         mylist.add(ed.getText().toString());
+    }
+    public void click12(View v)
+    {
+        mylist.remove(sp.getSelectedItemPosition());
+        adapter.notifyDataSetChanged();
     }
 }
